@@ -36,7 +36,7 @@ func (d *Database) GetComment(ctx context.Context, uuid string) (comment.Comment
 	)
 	err := row.Scan(&cmtRow.ID, &cmtRow.Slug, &cmtRow.Body, &cmtRow.Author)
 	if err != nil {
-		return comment.Comment{}, fmt.Errorf("error fetching the comment by uuid")
+		return comment.Comment{}, fmt.Errorf("error fetching the comment by uuid: %w", err)
 	}
 
 	// convert cmtrow to struct
